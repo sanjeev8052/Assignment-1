@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%!
+        Connection con;
+        PreparedStatement pstmt;
+        Statement stmt;
+    %>
+    <%
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/assignment3?useSSL=false", "root", "Sanju@8052");
+            System.out.println("Connection Established .. ");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Driver class Not found...");
+        } catch (SQLException sqe) {
+            sqe.printStackTrace();
+
+        }
+    %>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- Add these lines in the <head> section of your HTML -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .product {
+                transition: 2s;
+                width: 100vw;
+                height: 100vh;
+                background-image: linear-gradient( to left ,rgb(244, 234, 234), rgb(81, 81, 189));
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+
+
+            }
+
+            .form {
+                padding: 2rem;
+                color: white;
+                width: 50%;
+                height: auto;
+                background-color: rgb(0, 0, 0, 0.5);
+            }
+            .tb{
+                background-color: rgb(0,0,0,0.5);
+                width: 80%;
+                color: white;
+                border-radius: 10px;
+            }
+        </style>
+
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg w-100 navbar-light bg-light position-fixed">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#users">All-user</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#category">Add-category</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#product">Add-Product</a>
+                    </li>
+
+            </div>
+        </nav>
+        <div id="users" class="product">
+
+            <table class="table tb table-striped m-3">
+                <thead>
+                    <tr>
+                        <th scope="col">user Id</th>
+                        <th scope="col">username</th>
+                        <th scope="col">email</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">address</th>
+                        <th scope="col">city</th>
+                        <th scope="col">state</th>
+                        <th scope="col">Country</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+                        pstmt = con.prepareCall("select * from user_master where role=?");
+                        pstmt.setString(1, "user");
+
+                        ResultSet result = pstmt.executeQuery();
+
+                        while (result.next()) {
+
+                    %>
+                    <tr>
+
+                        <td><%= result.getString("user_id")%></td>
+                        <td><%= result.getString("username")%></td>
+                        <td><%= result.getString("email")%></td>
+                        <td><%= result.getString("phone")%></td>
+                        <td><%= result.getString("address")%></td>
+                        <td><%= result.getString("city")%></td>
+                        <td><%= result.getString("state")%></td>
+                        <td><%= result.getString("country")%></td>
+
+                    </tr>
+                    <%
+                        }
+                    %>
+
+
+                </tbody>
+            </table>
+        </div>
+        <div id="category" class="product">
+            <h1>add Category</h1>
+            <form class="form form-control" action="" method="post">
+                <div class="row">
+                    <div class="col-8">
+                        <input type="text" class="form-control " placeholder="Add Product Category" name="Category_name">
+                    </div>
+                    <div class="col-4">
+                        <input type="submit" value="addcate" class="btn  btn-warning form-control" name="btnAdd">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <%
+            try {
+
+                String Category_name = request.getParameter("Category_name");
+                if (!Category_name.isEmpty()) {
+                    pstmt = con.prepareCall("insert into category(category_name) values(?)");
+                    pstmt.setString(1, Category_name);
+
+                    pstmt.executeUpdate();
+                    System.out.println("category inserted..");
+                }
+            }catch(SQLException sq){
+                sq.printStackTrace();
+            }
+
+
+        %> 
+
+
+        <div id="product" class="product">
+            <h1>add Product</h1>
+            <form class="form form-control" action="" method="post">
+                <div class="row">
+
+                    <div class="col-4 d-flex flex-column">
+                        <label for="" class=" form-control mb-3">Product Name</label>
+                        <label for="" class=" form-control mb-3">Price</label>
+                        <label for="" class=" form-control mb-3">Unit</label>
+                        <label for="" class=" form-control mb-3">Stoke</label>
+                        <label for="" class=" form-control mb-3">discount</label>
+                        <label for="" class=" form-control mb-3">Stock</label>
+                        <label for="" class=" form-control mb-3">Image</label>
+                        <label for="" class=" form-control mb-3">Select category</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control  mb-3 " placeholder="Enter  Product name" name="p_name">
+                        <input type="text" class="form-control  mb-3 " placeholder="Enter  Product Price" name="price">
+                        <input type="text" class="form-control  mb-3 " placeholder="Enter  Product unit" name="price">
+                        <input type="text" class="form-control  mb-3 " placeholder="Enter  Product Stock" name="stock">
+                        <input type="text" class="form-control  mb-3 " placeholder="Enter  Product discount"
+                               name="discount">
+                        <input type="text" class="form-control  mb-3 " placeholder="Enter  Product stock" name="stock">
+                        <input type="file" class="form-control  mb-3 " placeholder="Enter  Product stock" name="Image">
+                        <select name="" id="" class="form-control mb-3" aria-valuetext="Sle">
+                            <option value="">Kids</option>
+                            <option value="">man</option>
+                        </select>
+
+                    </div>
+                    <div class="col-12">
+                        <input type="submt" value="Add Product" class="btn  btn-warning form-control" name="Category_name">
+                    </div>
+                </div>
+            </form>
+
+
+    </body>
+
+</html>

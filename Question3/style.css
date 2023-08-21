@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+a{
+    text-decoration: none;
+}
+.main-box{
+    background-color: rgb(18, 83, 109);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    padding: 2vmax;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+   
+}
+.main{
+    background-color: rgb(18, 83, 109);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    
+   
+}
+.qes1{
+    width: 40vmax;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px;
+}

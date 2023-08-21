@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container-build {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    background-image: linear-gradient(to left top, rgb(136, 23, 110), rgb(174, 81, 81));
+    display: grid;
+}
+
+.td {
+    width: 7rem;
+}
+
+
+.box {
+    width: 60%;
+
+    margin: 10rem auto;
+    background-color: rgb(41, 36, 36);
+    padding: 2rem;
+    border-radius: 20px;
+}
+.input { 
+    background-color: gainsboro;
+    border-radius: 15px;
+    display: flex;
+
+}
+
+#task{
+    background-color: rgb(41, 36, 36) ;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+input[type="text"] {
+    
+    background-color: rgb(237, 212, 212);
+    padding: 0 5px;
+
+}
+checkbox {
+    width: 40px;
+    height: 40px;
+}
+
+.summary {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.summary span {
+    margin-right: 2rem;
+}
+
+
+@media(max-width: 700px) {
+    .container-build {
+        width: 100vw;
+        height: 100vh;
+        padding: 2px;
+        background-image: linear-gradient(to left top, rgb(136, 23, 110), rgb(174, 81, 81));
+    }
+    .box {
+
+        width: 95%;
+        margin: 10px;
+        padding: 10px 20px;
+        height: 90vh;
+        overflow-y: scroll;
+    }
+    .card {
+        padding: 20px 5px;
+        margin: 3px auto;
+        background-color: black;
+        overflow: auto;
+        
+    }
+
+    .Boxcard{
+        padding-top:6rem ;
+    }
+    
+    table {
+        display: none;
+    }
+    .summary {
+        display: flex;
+        flex-direction: column;
+    }
+    .main{
+        width: 85%;
+        padding: 10px 0;
+        position: fixed;
+        z-index: 2;
+        background-color: rgb(41, 36, 36);
+    }
+
+}
+
+@media(min-width: 700px) {
+    .Boxcard{
+        display: none;
+    }
+}

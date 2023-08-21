@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Slideshow</title>
+    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .slider {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .slide {
+            
+            transition: transform 0.5s ease-in-out;
+        }
+
+        img {
+            max-width: 10%;
+            height: auto;
+        }
+    </style>
+</head>
+
+
+
+    <div class="slider">
+        <div class="slide">
+            <img src="./image/slide1.png" alt="Image 1">
+        </div>
+        <div class="slide">
+            <img src="./image/slide2.png" alt="Image 2">
+        </div>
+        <div class="slide">
+            <img src="./image/slide3.png" alt="Image 3">
+        </div>
+    </div>
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+    <script>
+        const slider = document.querySelector('.slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.transform = `translateX(${100 * (i - index)}%)`;
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        });
+
+        showSlide(currentIndex);
+
+    </script>
+
+
+    </body>
+
+</html>
