@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+
+    <style>
+     
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+
+        <div class="main-image">
+            <img ondblclick="closeImage()"  src=""  class="d-none" id="mainImage" />
+        </div>
+
+
+        <div class="gallery" id="gallery">
+            <img class="images" id="img" title="Click to open" src="../imageslide/image/slide1.png" onclick="showImage(this)" />
+            <img class="images" id="img" title="Click to open" src="../imageslide/image/slide2.png" onclick="showImage(this)" />
+            <img class="images" id="img" title="Click to open" src="../imageslide/image/slide3.png" onclick="showImage(this)" />
+        </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

@@ -215,18 +215,18 @@ submit.addEventListener('click', () => {
         setScore.classList.remove("hide")
         let url = ""
         if (percentage <= 25) {
-            url = "./image/0.gif"
+            url = "./image/crying.png"
         } else if (percentage <= 50) {
-            url = "./image/3.gif"
+            url = "./image/good.png"
         } else if (percentage <= 75) {
-            url = "./image/3.gif"
+            url = "./image/better.png"
         } else if (percentage <= 100) {
             url = "./image/excellent.png"
         }
         setScore.innerHTML = ` 
         <h3><img id="img" src="${url}" alt=""></h3>
         <h4>Dear ${uname.value || "Guest"} You Scored ${score}/${testRange} and ${percentage}%</h4>
-        <button onclick="btnReview()"> Review answer</button>
+       
         <button onClick="location.reload()">Play again</button>
         `
         axios.post("https://quizapp-uhg8.onrender.com/addResult", { name: `${uname.value || "Guest"}`, score: `${score} out of ${testRange} and ${percentage}%` })
@@ -235,7 +235,7 @@ submit.addEventListener('click', () => {
    
 
 })
-for (let i = 0; i < 5; i++) { 
+for (let i = 0; i < testRange; i++) { 
     var setAns = `
  
     <h5 id="question">${quiz[i].qus}</h5>
@@ -251,7 +251,7 @@ for (let i = 0; i < 5; i++) {
 }
 
 const btnReview = () => {
-    alert("ok")
+    
     let setScore = document.querySelector(".result")
     let summaryBox = document.querySelector("#summary-box")
     summaryBox.classList.remove("hide")

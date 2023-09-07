@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+   
+       
+
+</head>
+
+<body>
+    <div class="main">
+        <form class="box" action="#" method="post" onsubmit="check(event)">
+            <h1>Login</h1>
+            <input class="form-control my-3" required type="text" name="uname" id="uname" placeholder="Enter Your username." />
+
+            <input class="form-control" required type="password" name="pas" id="pas" placeholder="Enter Your password" />
+
+            <button class="btn btn-outline-primary my-2" type="submit">Submit</button>
+        </form>
+    </div>
+
+
+    <script>
+        function check(event) {
+            event.preventDefault();
+
+            let uname = document.getElementById("uname").value;
+            let pas = document.getElementById("pas").value;
+
+
+            if (uname == "sanjeev" && pas == "password") {
+                alert("Login Successful.");
+
+                document.getElementById("uname").value = "";
+                document.getElementById("pas").value = "";
+            }
+            else {
+                alert("Login Failed.");
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <div class="main">
+        <div class="box">
+            <h1 id="showTime">Remaining Time :- 5</h1>
+        </div>
+    </div>
+</body>
+<script>
+    let counter = 5;
+    let timer = setInterval(() => {
+        if(counter == 0)
+        {
+            alert("Time's up.");
+            window.clearInterval(timer);
+        }
+        else
+        {
+            counter--;
+        }
+
+        document.getElementById("showTime").innerText = "Remaining Time :- " + counter;
+    }, 1000);
+</script>
+</html>
