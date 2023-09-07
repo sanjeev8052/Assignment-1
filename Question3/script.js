@@ -51,10 +51,28 @@ function calculate(n) {
 
 }
 
+// question 3.5
+
+let body = document.getElementsByTagName("div")[0];
+
+
+
+function changeBg(){
+    if(document.getElementById("bgcolor").value != null && document.getElementById("bgcolor").value != "")
+    {
+        body.style.backgroundColor = document.querySelector("#bgcolor").value;   
+    }
+    else
+    {
+        body.style.backgroundColor = "white";   
+    }
+}
+
+
 let hr = 0;
 let mi = 0;
 let se = 0;
-let ms = 0;
+
 
 let timer;
 

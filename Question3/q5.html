@@ -9,24 +9,11 @@
 </head>
 
 <body>
-    <div class="box">
+    <div class="main">
         <input id="bgcolor" onchange="changeBg()" type="color">
-        
     </div>
    
 
-    <script>
-        let body = document.getElementsByTagName("body")[0];
-        function changeBg(){
-            if(document.getElementById("bgcolor").value != null && document.getElementById("bgcolor").value != "")
-            {
-                body.style.backgroundColor = document.querySelector("#bgcolor").value;   
-            }
-            else
-            {
-                body.style.backgroundColor = "white";   
-            }
-        }
-    </script>
+   <script src="./script.js"></script>
 </body>
 </html>

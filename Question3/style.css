@@ -15,12 +15,14 @@
 .box{
     background-color:white;
     padding: 2rem;
+    width: 35%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: rgb(41, 39, 37);
+    box-shadow: 4px 5px 10px;
     
 }
 button{

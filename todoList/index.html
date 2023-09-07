@@ -87,9 +87,11 @@
             }
             let inNot = true
             task.forEach(element => {
-                if (element === input) {
+                
+                if (element.name === input) {
                     alert("Task Already Exists....")
                     inNot = false
+                  
                     return true
                 }
             });
